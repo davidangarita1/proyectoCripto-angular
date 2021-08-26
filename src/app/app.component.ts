@@ -19,6 +19,7 @@ interface Coin {
 export class AppComponent implements OnInit {
 
   coins: Coin[] = [];
+  filteredCoins: Coin[] = [];
   titles: string[] = [
     '#',
     'Coin',
@@ -26,8 +27,16 @@ export class AppComponent implements OnInit {
     'Price Change',
     '24h Volume'
   ];
+  searchText = '';
 
   constructor(private http: HttpClient) { }
+
+  searchCoin() {
+    this.filteredCoins = this.coins.filter((coin) =>
+    coin.name.toLowerCase().includes(this.searchText.toLowerCase()) ||
+    coin.symbol.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }
 
   ngOnInit() {
     this.http
@@ -38,6 +47,7 @@ export class AppComponent implements OnInit {
           res => {
             console.log(res);
             this.coins = res;
+            this.filteredCoins = res;
           },
           err => console.log(err)
           );
