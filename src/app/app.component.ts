@@ -43,9 +43,6 @@ export class AppComponent implements OnInit {
     this.getData();
   }
 
-
-
-
   getData() {
     this.http
       .get<Coin[]>(
