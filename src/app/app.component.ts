@@ -55,6 +55,6 @@ export class AppComponent implements OnInit {
           },
           err => console.log(err)
           );
-    setTimeout(() => this.getData(), 10000);
+    setTimeout(() => this.getData(), 100000);
   }
 }
